@@ -17,26 +17,20 @@ function App() {
   }
 
  const searchFoods = el => {
-  const searchResult = foods.filter(e => {
-return e.name.toLowerCase().includes(el.toLowerCase())
-  })
+  const searchResult = foods.filter(e => e.name.toLowerCase().includes(el.toLowerCase()))
   setFood(searchResult)
  }
 
  const deleteButton = el => {
-  const deleteFood = food.filter(e => {
-    return e.name !== el
-  })
+  const deleteFood = food.filter(f => f.name !== el)
   setFood(deleteFood)
  }
+
 
   return(
     <div className="App">
 
-
-
 <Row style={{ width: '100%', justifyContent: 'center' }}>
-
 
 <AddFoodForm createFood={createFood}></AddFoodForm>
 
@@ -46,14 +40,14 @@ return e.name.toLowerCase().includes(el.toLowerCase())
 
 <Divider>Food List</Divider>
 
-
 <div>
 <Row style={{ width: '100%', justifyContent: 'center' }}>
-  {food.map((e)=> {
+  {food && (
+    food.map((e)=> {
     return(
       <FoodBox food={e} deleteButton={deleteButton}/>
     )
-  })}
+  }))}
 </Row>
 </div>
 </Row>
